@@ -1,0 +1,46 @@
+<h3>LISTA UTENTI ACME</h3>
+<!-- 
+<div *ngFor="let user of _users">
+    ID: {{ user.id }}<br>
+    name: {{ user.name }}<br>
+    surname: {{ user.surname }}<br>
+    email: {{ user.email }}<br>
+    ------------------------<br>
+</div> -->
+
+<div id="usersList" *ngIf="showUsers()">
+    <table *ngIf="_users">
+        <thead>
+            <th>ID</th>
+            <th>NAME</th>
+            <th>SURNAME</th>
+            <th>EMAIL</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of _users">
+                <td><a role="button" (click)="updateUser(user)">{{ user.id }}</a></td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.surname }}</td>
+                <td>{{ user.email }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p *ngIf="!_users">Waiting.....</p>
+
+</div>
+
+<div id="usersList" *ngIf="!showUsers()">
+    <h3>MODIFICA UTENTE</h3>
+    <form #myform="ngForm" (ngSubmit)="onUpdateUserSubmit(myform)">
+        <input type="text" name="name" [(ngModel)]="toModifyUser.name">
+        <br />
+        <input type="text" name="surname" [(ngModel)]="toModifyUser.surname">
+        <br />
+        <input type="email" name="email" [(ngModel)]="toModifyUser.email">
+        <br />
+        <br />
+        <input type="submit" value="SALVA">
+    </form>
+    <!-- <button (click)="finalizeUpdate()">SALVA</button> -->
+</div>
